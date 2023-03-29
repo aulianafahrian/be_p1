@@ -2,10 +2,7 @@ module github.com/aulianafahrian/be_p1
 
 go 1.20
 
-require (
-	github.com/aulianafahrian/aufaws-proyek1 v0.0.0-20230328084124-dbc9faaf87f8
-	go.mongodb.org/mongo-driver v1.11.3
-)
+require go.mongodb.org/mongo-driver v1.11.3
 
 require (
 	github.com/golang/snappy v0.0.1 // indirect

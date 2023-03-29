@@ -4,11 +4,9 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"time"
 
 	model "github.com/aulianafahrian/be_p1/model"
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -31,24 +29,23 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 	return insertResult.InsertedID
 }
 
-func InsertPresensi(long float64, lat float64, lokasi string, phonenumber string, checkin string, biodata model.Karyawan) (InsertedID interface{}) {
-	var presensi model.Presensi
-	presensi.Latitude = long
-	presensi.Longitude = lat
-	presensi.Location = lokasi
-	presensi.Phone_number = phonenumber
-	presensi.Datetime = primitive.NewDateTimeFromTime(time.Now().UTC())
-	presensi.Checkin = checkin
-	presensi.Biodata = biodata
-	return InsertOneDoc("tes_db", "presensi", presensi)
+func InsertProyek1(mahasiswa model.Mahasiswa, dosen_pembimbing model.Dosen, dosen_penguji model.Dosen, judul string, tanggal_sidang string) (InsertedID interface{}) {
+	var proyek model.Proyek1
+	proyek.Biodata_mahasiswa = mahasiswa
+	proyek.Dosen_pembimbing = dosen_pembimbing
+	proyek.Dosen_penguji = dosen_penguji
+	proyek.Judul = judul
+	proyek.Tanggal_sidang = tanggal_sidang
+	return InsertOneDoc("proyek", "proyek1", proyek)
 }
 
-func GetKaryawanFromPhoneNumber(phone_number string) (staf model.Presensi) {
-	karyawan := MongoConnect("tes_db").Collection("presensi")
-	filter := bson.M{"phone_number": phone_number}
-	err := karyawan.FindOne(context.TODO(), filter).Decode(&staf)
+func GetProyek1FromNPM(npm int) (staf model.Proyek1) {
+	proyek1 := MongoConnect("proyek").Collection("proyek1")
+	filter := bson.M{"biodata_mahasiswa.npm": npm}
+	fmt.Print(npm)
+	err := proyek1.FindOne(context.TODO(), filter).Decode(&staf)
 	if err != nil {
-		fmt.Printf("getKaryawanFromPhoneNumber: %v\n", err)
+		fmt.Printf("GetProyek1FromNPM: %v\n", err)
 	}
 	return staf
 }
