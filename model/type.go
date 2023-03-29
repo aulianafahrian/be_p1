@@ -1,4 +1,4 @@
-package namapackage
+package model
 
 import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -15,7 +15,7 @@ type Proyek1 struct {
 
 type Mahasiswa struct {
 	ID      primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	NPM     int                `bson:"npm,omitempty" json:"npm,omitempty"`
+	NPM     string             `bson:"npm,omitempty" json:"npm,omitempty"`
 	Nama    string             `bson:"nama,omitempty" json:"nama,omitempty"`
 	Kelas   string             `bson:"kelas,omitempty" json:"kelas,omitempty"`
 	Jurusan Jurusan            `bson:"jurusan,omitempty" json:"jurusan,omitempty"`
@@ -24,19 +24,19 @@ type Mahasiswa struct {
 
 type Dosen struct {
 	ID    primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	NID   int                `bson:"nid,omitempty" json:"nid,omitempty"`
+	NID   string             `bson:"nid,omitempty" json:"nid,omitempty"`
 	Nama  string             `bson:"nama,omitempty" json:"nama,omitempty"`
 	Prodi Prodi              `bson:"prodi,omitempty" json:"prodi,omitempty"`
 }
 
 type Prodi struct {
 	ID         primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	Kode_Prodi int                `bson:"kode_prodi,omitempty" json:"kode_prodi,omitempty"`
+	Kode_Prodi string             `bson:"kode_prodi,omitempty" json:"kode_prodi,omitempty"`
 	Nama       string             `bson:"nama,omitempty" json:"nama,omitempty"`
 }
 
 type Jurusan struct {
 	ID           primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
-	Kode_jurusan int                `bson:"kode_jurusan,omitempty" json:"kode_jurusan,omitempty"`
+	Kode_jurusan string             `bson:"kode_jurusan,omitempty" json:"kode_jurusan,omitempty"`
 	Nama         string             `bson:"nama,omitempty" json:"nama,omitempty"`
 }
