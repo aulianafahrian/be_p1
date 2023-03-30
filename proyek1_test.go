@@ -84,7 +84,7 @@ func TestGetProyek1FromNPM(t *testing.T) {
 }
 func TestGetDataMahasiswaFromNPM(t *testing.T) {
 	npm := "1214049"
-	mahasiswa := module.GetDataMahasiswaFromNPM(npm, module.MongoConn, "data_mahasiswa")
+	mahasiswa := module.GetDataMahasiswaFromNPM(npm, module.MongoConn, "mahasiswa")
 	fmt.Println(mahasiswa)
 }
 
@@ -96,7 +96,7 @@ func TestGetDataDosenFromNID(t *testing.T) {
 
 func TestGetDataProdiFromKodeProdi(t *testing.T) {
 	kode_prodi := "11111"
-	prodi := module.GetDataProdiFromKodeProdi(kode_prodi, module.MongoConn, "data_mahasiswa")
+	prodi := module.GetDataProdiFromKodeProdi(kode_prodi, module.MongoConn, "prodi")
 	fmt.Println(prodi)
 }
 
