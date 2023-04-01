@@ -125,9 +125,9 @@ func GetDataJurusanFromKodeJurusan(kode_jurusan string, db *mongo.Database, col 
 }
 
 func GetAllProyek1(db *mongo.Database, col string) (data []model.Proyek1) {
-	mahasiswa := db.Collection(col)
+	proyek1 := db.Collection(col)
 	filter := bson.M{}
-	cursor, err := mahasiswa.Find(context.TODO(), filter)
+	cursor, err := proyek1.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetALLData :", err)
 	}
