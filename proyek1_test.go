@@ -105,3 +105,8 @@ func TestGetDatajurusanFromKodeJurusan(t *testing.T) {
 	jurusan := module.GetDataJurusanFromKodeJurusan(kode_jurusan, module.MongoConn, "jurusan")
 	fmt.Println(jurusan)
 }
+
+func TestGetAll(t *testing.T) {
+	data := module.GetAllProyek1(module.MongoConn, "proyek1")
+	fmt.Println(data)
+}
