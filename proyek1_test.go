@@ -40,8 +40,8 @@ func TestInsertProyek1(t *testing.T) {
 }
 
 func TestInsertDataMahasiswa(t *testing.T) {
-	npm := "1214049"
-	nama := "Auliana Fahrian"
+	npm := "1214050"
+	nama := "Dani Ferdinan"
 	kelas := "2B"
 	jurusan := model.Jurusan{
 		Nama: "Teknik Informatika",
