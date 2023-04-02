@@ -124,16 +124,16 @@ func GetDataJurusanFromKodeJurusan(kode_jurusan string, db *mongo.Database, col 
 	return data
 }
 
-func GetAllProyek1(db *mongo.Database, col string) (data []model.Proyek1) {
-	proyek1 := db.Collection(col)
+func GetAllProyek1(db *mongo.Database, col string) (proyek1 []model.Proyek1) {
+	data_proyek1 := db.Collection(col)
 	filter := bson.M{}
-	cursor, err := proyek1.Find(context.TODO(), filter)
+	cursor, err := data_proyek1.Find(context.TODO(), filter)
 	if err != nil {
 		fmt.Println("GetALLData :", err)
 	}
-	err = cursor.All(context.TODO(), &data)
+	err = cursor.All(context.TODO(), &proyek1)
 	if err != nil {
 		fmt.Println(err)
 	}
-	return
+	return proyek1
 }
