@@ -137,3 +137,30 @@ func GetAllProyek1(db *mongo.Database, col string) (proyek1 []model.Proyek1) {
 	}
 	return proyek1
 }
+
+func GetAllDataMahasiswa(db *mongo.Database, col string) (mahasiswa []model.Mahasiswa) {
+	data_mahasiswa := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := data_mahasiswa.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &mahasiswa)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return mahasiswa
+}
+func GetAllDataDosen(db *mongo.Database, col string) (dosen []model.Dosen) {
+	data_dosen := db.Collection(col)
+	filter := bson.M{}
+	cursor, err := data_dosen.Find(context.TODO(), filter)
+	if err != nil {
+		fmt.Println("GetALLData :", err)
+	}
+	err = cursor.All(context.TODO(), &dosen)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return dosen
+}

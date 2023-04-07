@@ -47,15 +47,15 @@ func TestInsertDataMahasiswa(t *testing.T) {
 		Nama: "Teknik Informatika",
 	}
 	prodi := model.Prodi{
-		Nama: "D4 Teknik Informatika",
+		Nama: "Sarjana Terapan Teknik Informatika",
 	}
 	hasil := module.InsertDataMahasiswa(module.MongoConn, "mahasiswa", npm, nama, kelas, jurusan, prodi)
 	fmt.Println(hasil)
 }
 
 func TestInsertDataDosen(t *testing.T) {
-	nid := "123456"
-	nama := "Dani Ferdinan"
+	nid := "123466"
+	nama := "Woro Isti Rahayu, S.T., M.T., SFPC"
 	prodi := model.Prodi{
 		Nama: "D4 Teknik Informatika",
 	}
@@ -64,15 +64,15 @@ func TestInsertDataDosen(t *testing.T) {
 }
 
 func TestInsertDataProdi(t *testing.T) {
-	kode_prodi := "11111"
-	nama := "D4 Teknik Informatika"
+	kode_prodi := "1120"
+	nama := "Sarjana Terapan E-commerce Logistik"
 	hasil := module.InsertDataProdi(module.MongoConn, "prodi", kode_prodi, nama)
 	fmt.Println(hasil)
 }
 
 func TestInsertDataJurusan(t *testing.T) {
-	kode_jurusan := "22222"
-	nama := "Teknik Informatika"
+	kode_jurusan := "22230"
+	nama := "Digital Marketing"
 	hasil := module.InsertDataJurusan(module.MongoConn, "jurusan", kode_jurusan, nama)
 	fmt.Println(hasil)
 }
