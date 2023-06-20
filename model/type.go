@@ -13,6 +13,17 @@ type Proyek1 struct {
 	Tanggal_sidang    string             `bson:"tanggal_sidang,omitempty" json:"tanggal_sidang,omitempty"`
 }
 
+type Proyek struct {
+	ID                primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
+	Tipe_proyek       string             `bson:"tipe_proyek,omitempty" json:"tipe_proyek,omitempty"`
+	Biodata_mahasiswa Mahasiswa          `bson:"biodata_mahasiswa,omitempty" json:"biodata_mahasiswa,omitempty"`
+	Dosen_pembimbing  Dosen              `bson:"dosen_pembimbing,omitempty" json:"dosen_pembimbing,omitempty"`
+	Dosen_penguji     Dosen              `bson:"dosen_penguji,omitempty" json:"dosen_penguji,omitempty"`
+	Judul             string             `bson:"judul,omitempty" json:"judul,omitempty"`
+	Tanggal_sidang    string             `bson:"tanggal_sidang,omitempty" json:"tanggal_sidang,omitempty"`
+	Ruang_sidang      string             `bson:"ruang_sidang,omitempty" json:"ruang_sidang,omitempty"`
+}
+
 type Mahasiswa struct {
 	ID      primitive.ObjectID `bson:"_id,omitempty" json:"_id,omitempty"`
 	NPM     string             `bson:"npm,omitempty" json:"npm,omitempty"`

@@ -110,3 +110,35 @@ func TestGetAll(t *testing.T) {
 	data := module.GetAllProyek1(module.MongoConn, "proyek1")
 	fmt.Println(data)
 }
+
+func TestInsertProyek(t *testing.T) {
+	tipe_proyek := "Proyek 2"
+	biodata_mahasiswa := model.Mahasiswa{
+		NPM:   "1214049",
+		Nama:  "Auliana Fahrian",
+		Kelas: "2B",
+		Jurusan: model.Jurusan{
+			Nama: "Teknik Informatika",
+		},
+		Prodi: model.Prodi{
+			Nama: "D4 Teknik Informatika",
+		},
+	}
+	dosen_pembimbing := model.Dosen{
+		Nama: "Dimas",
+		Prodi: model.Prodi{
+			Nama: "D4 Teknik Informatika",
+		},
+	}
+
+	dosen_penguji := model.Dosen{
+		Nama: "Dani",
+		Prodi: model.Prodi{
+			Nama: "D4 Teknik Informatika",
+		},
+	}
+	Judul := "Perangkat Keras"
+	tanggal_sidang := "2023-12-12"
+	hasil, _ := module.InsertProyek(module.MongoConn, "proyek", tipe_proyek, biodata_mahasiswa, dosen_pembimbing, dosen_penguji, Judul, tanggal_sidang)
+	fmt.Println(hasil)
+}

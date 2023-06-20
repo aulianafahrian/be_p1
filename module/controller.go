@@ -8,14 +8,19 @@ import (
 	"github.com/aiteung/atdb"
 	model "github.com/aulianafahrian/be_p1/model"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
 var MongoString string = os.Getenv("MONGOSTRING")
 
+//	var MongoInfo1 = atdb.DBInfo{
+//		DBString: MongoString,
+//		DBName:   "tes_db",
+//	}
 var MongoInfo = atdb.DBInfo{
 	DBString: MongoString,
-	DBName:   "tes_db",
+	DBName:   "proyek1",
 }
 
 var MongoConn = atdb.MongoConnect(MongoInfo)
@@ -163,4 +168,22 @@ func GetAllDataDosen(db *mongo.Database, col string) (dosen []model.Dosen) {
 		fmt.Println(err)
 	}
 	return dosen
+}
+
+func InsertProyek(db *mongo.Database, col string, tipe_proyek string, biodata_mahasiswa model.Mahasiswa, dosen_pembimbing model.Dosen, dosen_penguji model.Dosen, judul string, tanggal_sidang string) (insertedID primitive.ObjectID, err error) {
+	presensi := bson.M{
+		"tipe_proyek":       tipe_proyek,
+		"biodata_mahasiswa": biodata_mahasiswa,
+		"dosen_pembimbing":  dosen_pembimbing,
+		"dosen_penguji":     dosen_penguji,
+		"judul":             judul,
+		"tanggal_sidang":    tanggal_sidang,
+	}
+	result, err := db.Collection(col).InsertOne(context.Background(), presensi)
+	if err != nil {
+		fmt.Printf("InsertPresensi: %v\n", err)
+		return
+	}
+	insertedID = result.InsertedID.(primitive.ObjectID)
+	return insertedID, nil
 }
