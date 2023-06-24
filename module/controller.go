@@ -2,6 +2,7 @@ package module
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 
@@ -186,4 +187,43 @@ func InsertProyek(db *mongo.Database, col string, tipe_proyek string, biodata_ma
 	}
 	insertedID = result.InsertedID.(primitive.ObjectID)
 	return insertedID, nil
+}
+
+func GetProyekFromID(_id primitive.ObjectID, db *mongo.Database, col string) (pryk model.Proyek, errs error) {
+	karyawan := db.Collection(col)
+	filter := bson.M{"_id": _id}
+	err := karyawan.FindOne(context.TODO(), filter).Decode(&pryk)
+	if err != nil {
+		if errors.Is(err, mongo.ErrNoDocuments) {
+			return pryk, fmt.Errorf("no data found for ID %s", _id)
+		}
+		return pryk, fmt.Errorf("error retrieving data for ID %s: %s", _id, err.Error())
+	}
+	return pryk, nil
+}
+
+func GetMahasiswaFromID(_id primitive.ObjectID, db *mongo.Database, col string) (mhs model.Mahasiswa, errs error) {
+	karyawan := db.Collection(col)
+	filter := bson.M{"_id": _id}
+	err := karyawan.FindOne(context.TODO(), filter).Decode(&mhs)
+	if err != nil {
+		if errors.Is(err, mongo.ErrNoDocuments) {
+			return mhs, fmt.Errorf("no data found for ID %s", _id)
+		}
+		return mhs, fmt.Errorf("error retrieving data for ID %s: %s", _id, err.Error())
+	}
+	return mhs, nil
+}
+
+func GetDosenFromID(_id primitive.ObjectID, db *mongo.Database, col string) (dsn model.Dosen, errs error) {
+	karyawan := db.Collection(col)
+	filter := bson.M{"_id": _id}
+	err := karyawan.FindOne(context.TODO(), filter).Decode(&dsn)
+	if err != nil {
+		if errors.Is(err, mongo.ErrNoDocuments) {
+			return dsn, fmt.Errorf("no data found for ID %s", _id)
+		}
+		return dsn, fmt.Errorf("error retrieving data for ID %s: %s", _id, err.Error())
+	}
+	return dsn, nil
 }

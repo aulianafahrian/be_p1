@@ -6,6 +6,7 @@ import (
 
 	model "github.com/aulianafahrian/be_p1/model"
 	module "github.com/aulianafahrian/be_p1/module"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func TestInsertProyek1(t *testing.T) {
@@ -141,4 +142,17 @@ func TestInsertProyek(t *testing.T) {
 	tanggal_sidang := "2023-12-12"
 	hasil, _ := module.InsertProyek(module.MongoConn, "proyek", tipe_proyek, biodata_mahasiswa, dosen_pembimbing, dosen_penguji, Judul, tanggal_sidang)
 	fmt.Println(hasil)
+}
+
+func TestGetDosenFromID(t *testing.T) {
+	id := "6492c66da560db0102be7bc1"
+	objectID, err := primitive.ObjectIDFromHex(id)
+	if err != nil {
+		t.Fatalf("error converting id to ObjectID: %v", err)
+	}
+	dosen, err := module.GetDosenFromID(objectID, module.MongoConn, "dosen")
+	if err != nil {
+		t.Fatalf("error calling GetDosenFromID: %v", err)
+	}
+	fmt.Println(dosen)
 }
